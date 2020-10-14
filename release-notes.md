@@ -1,3 +1,12 @@
+# v1.4.1
+- based on MPS 2019.3.4
+- declarative model creation/deletion/renaming/matching
+- improved ruleset syntax
+- multi MPS projects support
+
+- apihasduhasdkuhasduahsdiuagsdiuagsiuagsdiuagsdfiuagsd
+aa erfa wergfawer gaerg aerg aerg aerg aerg
+arg aerga rg aerga rega erg
 # v1.4.0
 - update to latest MPS version
 # v1.2.4
