@@ -27,7 +27,7 @@ jobs:
         run: |
           set -x
           mpsVersion=1.2.3.4.5
-          tag=1.4.0
+          tag=v1.4.0
           cat <<EOF >> $GITHUB_ENV
           releaseNotes<<EOF2
           - based on MPS $mpsVersion
