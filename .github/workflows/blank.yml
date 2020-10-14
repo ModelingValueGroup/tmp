@@ -25,6 +25,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: AAA
         run: |
+          set -x
           mpsVersion=1.2.3.4.5
           tag=1.4.0
           cat <<EOF >> $GITHUB_ENV
@@ -34,7 +35,7 @@ jobs:
           EOF2
           EOF
           
-          fgrep "^# $tag\$" release-notes.md
+          fgrep "^# $tag\$" release-notes.md || :
           
           if ! fgrep -q "^# $tag\$" release-notes.md; then
               echo "::error::release notes are missing, add them to 'release-notes.md' as '# $tag'"
