@@ -26,11 +26,11 @@ jobs:
       - name: AAA
         run: |
           mpsVersion=1.2.3.4.5
+          tag=1.4.0
           cat <<EOF >> $GITHUB_ENV
           releaseNotes<<EOF2
           - based on MPS $mpsVersion
-          bla
-          bla
+          $(awk '/^# '"$tag"'$/ {on=1;next;} /^#/{on=0} on==1{gsub("%", "%25");printf "%s\n", $0}' release-notes.md)
           EOF2
           EOF
           
