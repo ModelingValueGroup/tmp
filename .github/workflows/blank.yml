@@ -34,7 +34,7 @@ jobs:
           EOF2
           EOF
           
-          if ! fgrep -q "^# $tag\$"; then
+          if ! fgrep -q "^# $tag\$" release-notes.md; then
               echo "::error::release notes are missing, add them to 'release-notes.md' as '# $tag'"
               exit 67
           fi
