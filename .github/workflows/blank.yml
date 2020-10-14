@@ -35,9 +35,11 @@ jobs:
           EOF2
           EOF
           
+          echo "=====A"
           cat release-notes.md
-          
+          echo "=====B"
           fgrep -x "# $tag" release-notes.md || :
+          echo "=====C"
           
           if ! fgrep -qx "# $tag" release-notes.md; then
               echo "::error::release notes are missing, add them to 'release-notes.md' as '# $tag'"
