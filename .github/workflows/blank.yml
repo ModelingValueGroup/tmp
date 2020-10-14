@@ -27,19 +27,13 @@ jobs:
         run: |
           set -x
           mpsVersion=1.2.3.4.5
-          tag=v1.4.0
+          tag=v1.4.1
           cat <<EOF >> $GITHUB_ENV
           releaseNotes<<EOF2
           - based on MPS $mpsVersion
           $(awk '/^# '"$tag"'$/ {on=1;next;} /^#/{on=0} on==1{gsub("%", "%25");printf "%s\n", $0}' release-notes.md)
           EOF2
           EOF
-          
-          echo "=====A"
-          cat release-notes.md
-          echo "=====B"
-          fgrep -x "# $tag" release-notes.md || :
-          echo "=====C"
           
           if ! fgrep -qx "# $tag" release-notes.md; then
               echo "::error::release notes are missing, add them to 'release-notes.md' as '# $tag'"
