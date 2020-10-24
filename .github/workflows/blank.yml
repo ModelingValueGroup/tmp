@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - run: |
-          mkdir -p out/artifact
-          echo aap >out/artifact/aap
-          echo bob >out/artifact/bob
+          mkdir -p out/artifacts
+          echo aap >out/artifacts/aap
+          echo bob >out/artifacts/bob
 
       - uses: actions/upload-artifact@v2
         with:
