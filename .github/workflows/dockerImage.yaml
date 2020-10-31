@@ -31,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ModelingValueGroup/test-image:latest
+          tags: modelingvaluegroup/test-image:latest
           build-args: |
             arg1=value1
             arg2=value2
