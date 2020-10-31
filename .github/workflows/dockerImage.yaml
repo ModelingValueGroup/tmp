@@ -8,7 +8,7 @@ jobs:
       - #------------------------------------------------
         run: |
           set -x
-          echo ${{ secrets.ALLREP_TOKEN }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin <<<"${{ secrets.ALLREP_TOKEN }}"
           docker pull ghcr.io/modelingvaluegroup/tmp:latest
           docker build . --tag ghcr.io/modelingvaluegroup/tmp:$GITHUB_SHA --cache-from ghcr.io/modelingvaluegroup/tmp:latest
           docker push ghcr.io/modelingvaluegroup/tmp:$GITHUB_SHA
