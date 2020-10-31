@@ -40,7 +40,7 @@ jobs:
         name: Image digest
         run: echo "TOMTOMTOM DIGEST=${{ steps.docker_build.outputs.digest }}"
   push_cli:
-    runs-on: ubuntu-latset
+    runs-on: ubuntu-latest
     steps:
       - #------------------------------------------------
         run: |
