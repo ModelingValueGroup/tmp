@@ -3,6 +3,7 @@ on:
   push
 jobs:
   push_to_registries:
+    if: cancelled()
     name: Push Docker image
     runs-on: ubuntu-latest
     steps:
@@ -38,3 +39,12 @@ jobs:
       - #-------------------------------------------------------------
         name: Image digest
         run: echo "TOMTOMTOM DIGEST=${{ steps.docker_build.outputs.digest }}"
+  push_cli:
+    runs-on: ubuntu-latset
+    steps:
+      - #------------------------------------------------
+        run: |
+          echo ${{ secrets.ALLREP_TOKEN }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          docker pull ghcr.io/github/octoshift:latest
+          docker build . --tag ghcr.io/github/octoshift:$GITHUB_SHA --cache-from ghcr.io/github/octoshift:latest
+          docker push ghcr.io/github/octoshift:$GITHUB_SHA
