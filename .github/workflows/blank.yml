@@ -1,5 +1,5 @@
 name: CI
-on: [push]
+on: gollum #[push]
 env:
   GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
   ALLREP_TOKEN: "${{secrets.ALLREP_TOKEN}}"
