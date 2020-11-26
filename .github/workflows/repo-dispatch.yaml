@@ -16,9 +16,7 @@ jobs:
     steps:
       - name: getBranch
         id: getBranch
-        run: |
-          branch="$(echo "${{ toJson(github.event.client_payload) }}" | fgrep 'branch' | sed 's/.*: //;s/,.*//')"
-          echo "::set-output name=branch::$branch"
+        run: echo "::set-output name=branch::$(jq -r .branch <<<'${{toJson(github.event.client_payload)}}')"
           
       - name: Checkout
         uses: actions/checkout@v2.3.4
