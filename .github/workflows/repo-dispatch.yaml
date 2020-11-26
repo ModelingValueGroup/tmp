@@ -1,14 +1,9 @@
 name: CI
 on: 
   repository_dispatch:
-    types: [sample_push]
-env:
-  GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+    types: push
 jobs:
   build:
     runs-on: ubuntu-20.04
-
     steps:
-      - run: |
-          echo "hello world (tom branch)"
-          echo "GITHUB_REF=$GITHUB_REF"
+      - run: echo "hello world (tom branch)"
