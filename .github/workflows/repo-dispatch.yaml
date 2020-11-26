@@ -10,13 +10,14 @@ jobs:
 
     steps:
       - name: getBranch
+        id: getBranch
         run: |
           echo "hello world"
           echo "GITHUB_REF=$GITHUB_REF"
           echo "GITHUB_ENV=$GITHUB_ENV"
           sed 's/^/&&&/' "$GITHUB_ENV"
           echo "payload: ${{ toJson(github.event.client_payload) }}"
-          branch="$(echo "${{ toJson(github.event.client_payload) }}" | fgrep 'branch' | sed 's/.*: //;s/,.*//;s|^|refs/heads/|')"
+          branch="$(echo "${{ toJson(github.event.client_payload) }}" | fgrep 'branch' | sed 's/.*: //;s/,.*//')"
           echo "branch=$branch"
           echo "BRANCH=$branch" >> $GITHUB_ENV
           echo "::set-output name=BRANCH::$branch"
