@@ -24,9 +24,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
         with:
-          ref: ${{steps.getBranch.outputs.branch}}
+          #ref: ${{steps.getBranch.outputs.branch}}
+          ref: tom
           lfs: true
           
       - run: |
+          echo "branch=${{steps.getBranch.outputs.branch}}"
           git status
           sed 's/^/@@@/' .github/workflows/repo-dispatch.yaml
