@@ -12,24 +12,12 @@ jobs:
       - name: getBranch
         id: getBranch
         run: |
-          echo "hello world"
-          echo "GITHUB_REF=$GITHUB_REF"
-          echo "GITHUB_ENV=$GITHUB_ENV"
-          sed 's/^/&&&/' "$GITHUB_ENV"
-          echo "payload: ${{ toJson(github.event.client_payload) }}"
           branch="$(echo "${{ toJson(github.event.client_payload) }}" | fgrep 'branch' | sed 's/.*: //;s/,.*//')"
-          echo "branch=$branch"
-          echo "BRANCH=$branch" >> $GITHUB_ENV
-          echo "::set-output name=BRANCH::$branch"
+          echo "::set-output name=branch::$branch"
           
       - name: Checkout
         uses: actions/checkout@v2.3.4
         with:
-          #ref: ${{steps.getBranch.outputs.BRANCH}}
-          ref: tom
-          lfs: true
+          ref: ${{steps.getBranch.outputs.branch}}
           
-      - run: |
-          echo "branch=${{steps.getBranch.outputs.BRANCH}}"
-          git status
-          sed 's/^/@@@/' .github/workflows/repo-dispatch.yaml
+      - run: git status
