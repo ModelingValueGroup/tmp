@@ -14,12 +14,10 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: getBranch
-        id: getBranch
+      - id: getBranch
         run: echo "::set-output name=branch::$(jq -r .branch <<<'${{toJson(github.event.client_payload)}}')"
           
-      - name: Checkout
-        uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.4
         with:
           ref: ${{steps.getBranch.outputs.branch}}
           
