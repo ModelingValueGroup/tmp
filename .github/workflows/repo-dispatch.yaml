@@ -14,7 +14,7 @@ jobs:
           echo "hello world"
           echo "GITHUB_REF=$GITHUB_REF"
           echo "GITHUB_ENV=$GITHUB_ENV"
-          sed 's/^/&&&/' "GITHUB_ENV"
+          sed 's/^/&&&/' "$GITHUB_ENV"
           echo "payload: ${{ toJson(github.event.client_payload) }}"
           branch="$(echo "${{ toJson(github.event.client_payload) }}" | fgrep 'branch' | sed 's/.*: //;s/,.*//;s|^|refs/heads/|')"
           echo "branch=$branch"
