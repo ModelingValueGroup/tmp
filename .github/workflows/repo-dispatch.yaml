@@ -1,0 +1,11 @@
+name: CI
+on: [push,repository_dispatch]
+env:
+  GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - run: |
+          echo "hello world"
