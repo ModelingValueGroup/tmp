@@ -11,3 +11,4 @@ jobs:
     steps:
       - run: |
           echo "hello world"
+          echo "GITHUB_REF=$GITHUB_REF"
