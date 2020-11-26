@@ -10,5 +10,5 @@ jobs:
 
     steps:
       - run: |
-          echo "hello world"
+          echo "hello world (tom branch)"
           echo "GITHUB_REF=$GITHUB_REF"
