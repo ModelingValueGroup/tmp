@@ -18,17 +18,17 @@ jobs:
           echo "payload: ${{ toJson(github.event.client_payload) }}"
           branch="$(echo "${{ toJson(github.event.client_payload) }}" | fgrep 'branch' | sed 's/.*: //;s/,.*//;s|^|refs/heads/|')"
           echo "branch=$branch"
-          #echo "branch=$branch" >> $GITHUB_ENV
-          echo "::set-output name=branch::$branch"
+          echo "BRANCH=$branch" >> $GITHUB_ENV
+          echo "::set-output name=BRANCH::$branch"
           
       - name: Checkout
         uses: actions/checkout@v2.3.4
         with:
-          #ref: ${{steps.getBranch.outputs.branch}}
+          #ref: ${{steps.getBranch.outputs.BRANCH}}
           ref: tom
           lfs: true
           
       - run: |
-          echo "branch=${{steps.getBranch.outputs.branch}}"
+          echo "branch=${{steps.getBranch.outputs.BRANCH}}"
           git status
           sed 's/^/@@@/' .github/workflows/repo-dispatch.yaml
