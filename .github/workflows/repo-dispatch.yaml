@@ -1,5 +1,7 @@
 name: CI
-on: [push,repository_dispatch]
+on: 
+  repository_dispatch:
+    types: [sample_push]
 env:
   GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
 jobs:
